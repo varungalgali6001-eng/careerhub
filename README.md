@@ -1,16 +1,24 @@
-# React + Vite
+ Career Hub — Recruitment Platform
+Career Hub is a comprehensive, modern recruitment platform built with React and Tailwind CSS. It is designed to bridge the gap between job seekers and employers with a premium, user-friendly interface inspired by top-tier job boards like Naukri.com.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Key Features
 
-Currently, two official plugins are available:
+1) Advanced Job Search: Search for jobs by skills, designation, or company. Includes a dynamic filter sidebar for category, job type, and location.
+2) Professional Profile Builder: A dedicated dashboard for users to build their professional presence, manage skills, and simulate resume uploads.
+3)  Application Tracker: A visual pipeline and status list to track every stage of the hiring process (Applied, Interview, Offer, Rejected).
+4) Recruiter Dashboard: A fully functional interface for employers to post new job openings, manage active listings, and track applicant counts.
+5) Company Profiles & Reviews: Browse top employers, view company perks, industry details, and read employee star ratings and reviews.
+6) Skill-Based Recommendations: Smart landing page chips that recommend jobs based on trending industry skills.
+7)  Saved Jobs (Wishlist): Bookmark your favorite jobs and manage them in a dedicated wishlist.
+   
+    Tech Stack
+Frontend: React.js (Vite)
+Styling: Tailwind CSS (Utility-first, no external CSS)
+Routing: React Router DOM v6
+Icons: Lucide React (Premium SVGs)
+Data: Managed via local state and a robust mock data system.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ Design Aesthetic
+.Naukri-Inspired Light Theme: Clean white backgrounds with subtle slate-50 accents.
+.Premium UI: Custom shadows, smooth animations (fade-in, slide-up), and a responsive layout for all devices.
+.Interactive Components: Professional modals, dropdowns, and form validations.
