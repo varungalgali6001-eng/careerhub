@@ -51,8 +51,14 @@ export default function Companies() {
               <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-cardHover sticky top-24">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className={`w-14 h-14 rounded-xl ${selected.logoColor} flex items-center justify-center text-white text-2xl font-bold shadow-md`}>
-                      {selected.logo}
+                    <div className={`w-14 h-14 rounded-xl ${selected.logoColor} flex items-center justify-center text-white text-2xl font-bold shadow-md overflow-hidden relative`}>
+                      <span className="relative z-0">{selected.logo}</span>
+                      <img 
+                        src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${selected.name.replace(/\s+/g, '').toLowerCase()}.com&size=128`}
+                        alt={`${selected.name} logo`} 
+                        className="absolute inset-0 w-full h-full object-cover bg-white p-1 z-10"
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
                     </div>
                     <div>
                       <h2 className="font-bold text-gray-900 text-base">{selected.name}</h2>
@@ -100,8 +106,15 @@ export default function Companies() {
                   <div className="space-y-3">
                     {selected.userReviews.map((rev, i) => (
                       <div key={i} className="bg-gray-50 rounded-xl p-3 border border-gray-100">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium text-gray-800">{rev.user}</span>
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <img 
+                              src={`https://ui-avatars.com/api/?name=${rev.user.replace(' ', '+')}&background=random&color=fff&size=32&font-size=0.4`} 
+                              alt={rev.user} 
+                              className="w-6 h-6 rounded-full shadow-sm"
+                            />
+                            <span className="text-sm font-medium text-gray-800">{rev.user}</span>
+                          </div>
                           <div className="flex">
                             {[...Array(5)].map((_, j) => (
                               <Star key={j} size={11}

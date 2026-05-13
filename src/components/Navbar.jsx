@@ -18,13 +18,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-brand-blue flex items-center justify-center shadow-md">
-              <Globe size={18} className="text-white" />
-            </div>
-            <span className="text-xl font-extrabold text-brand-blue tracking-tight">
-              CareerHub
-            </span>
+          <Link to="/" className="flex items-center">
+            <img src="/logo.png" alt="CareerHub Logo" className="h-16 w-auto object-contain scale-[1.3] origin-left mix-blend-multiply" />
           </Link>
 
           {/* Desktop nav */}

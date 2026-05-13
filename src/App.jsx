@@ -8,8 +8,9 @@ import RecruiterDashboard from './pages/RecruiterDashboard';
 import SavedJobs from './pages/SavedJobs';
 import Companies from './pages/Companies';
 import { X, CheckCircle } from 'lucide-react';
+import { applications as initialApplications } from './data/mockData';
 
-function ApplyModal({ job, onClose }) {
+function ApplyModal({ job, onClose, onSubmit }) {
   const [submitted, setSubmitted] = useState(false);
 
   if (!job) return null;
@@ -67,7 +68,10 @@ function ApplyModal({ job, onClose }) {
 
         <div className="flex gap-3">
           <button
-            onClick={() => setSubmitted(true)}
+            onClick={() => {
+              onSubmit(job);
+              setSubmitted(true);
+            }}
             className="flex-1 py-2.5 bg-brand-blue hover:bg-brand-blueDark text-white font-semibold rounded-full transition text-sm shadow-md"
           >
             Submit Application
@@ -85,9 +89,29 @@ function ApplyModal({ job, onClose }) {
 export default function App() {
   const [savedJobs, setSavedJobs] = useState([]);
   const [applyJob, setApplyJob]   = useState(null);
+  const [myApplications, setMyApplications] = useState(initialApplications);
 
   const handleToggleSave = (id) =>
     setSavedJobs(prev => prev.includes(id) ? prev.filter(j => j !== id) : [...prev, id]);
+
+  const handleApplySubmit = (job) => {
+    // Only add if not already applied (optional, but good practice)
+    if (myApplications.some(app => app.jobTitle === job.title && app.company === job.company)) return;
+
+    const newApp = {
+      id: Date.now(),
+      jobTitle: job.title,
+      company: job.company,
+      logo: job.logo,
+      logoColor: job.logoColor,
+      appliedDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      status: "Applied",
+      nextStep: "Waiting for response",
+      salary: job.salary,
+      location: job.location,
+    };
+    setMyApplications([newApp, ...myApplications]);
+  };
 
   return (
     <Router>
@@ -96,12 +120,12 @@ export default function App() {
         <Routes>
           <Route path="/"            element={<Home         savedJobs={savedJobs} onToggleSave={handleToggleSave} onApply={setApplyJob} />} />
           <Route path="/profile"     element={<Profile />} />
-          <Route path="/applications"element={<Applications />} />
+          <Route path="/applications"element={<Applications myApplications={myApplications} />} />
           <Route path="/recruiter"   element={<RecruiterDashboard />} />
           <Route path="/saved"       element={<SavedJobs    savedJobs={savedJobs} onToggleSave={handleToggleSave} onApply={setApplyJob} />} />
           <Route path="/companies"   element={<Companies />} />
         </Routes>
-        <ApplyModal job={applyJob} onClose={() => setApplyJob(null)} />
+        <ApplyModal job={applyJob} onClose={() => setApplyJob(null)} onSubmit={handleApplySubmit} />
       </div>
     </Router>
   );

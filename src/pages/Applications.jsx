@@ -1,4 +1,4 @@
-import { applications } from '../data/mockData';
+// Remove static mock data import
 import { MapPin, Calendar, ArrowRight } from 'lucide-react';
 
 const statusConfig = {
@@ -10,9 +10,9 @@ const statusConfig = {
 
 const stages = ['Applied', 'Interview', 'Offer', 'Rejected'];
 
-export default function Applications() {
+export default function Applications({ myApplications }) {
   const grouped = stages.reduce((acc, s) => {
-    acc[s] = applications.filter(a => a.status === s);
+    acc[s] = myApplications.filter(a => a.status === s);
     return acc;
   }, {});
 
@@ -64,7 +64,7 @@ export default function Applications() {
 
         {/* Application list */}
         <div className="space-y-3">
-          {applications.map(app => {
+          {myApplications.map(app => {
             const cfg = statusConfig[app.status];
             return (
               <div key={app.id}

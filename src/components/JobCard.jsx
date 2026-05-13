@@ -6,8 +6,14 @@ export default function JobCard({ job, onToggleSave, onApply }) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <div className={`w-11 h-11 rounded-lg ${job.logoColor} flex items-center justify-center text-white text-lg font-bold shadow-sm`}>
-            {job.logo}
+          <div className={`w-11 h-11 rounded-lg ${job.logoColor} flex items-center justify-center text-white text-lg font-bold shadow-sm overflow-hidden relative`}>
+            <span className="relative z-0">{job.logo}</span>
+            <img 
+              src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${job.company.replace(/\s+/g, '').toLowerCase()}.com&size=128`}
+              alt={`${job.company} logo`} 
+              className="absolute inset-0 w-full h-full object-cover bg-white p-1 z-10"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 text-sm group-hover:text-brand-blue transition-colors leading-snug">

@@ -7,8 +7,14 @@ export default function CompanyCard({ company, onClick }) {
       className="group bg-white border border-gray-200 rounded-xl p-5 hover:shadow-cardHover hover:border-blue-200 transition-all duration-200 cursor-pointer shadow-card animate-slide-up"
     >
       <div className="flex items-start gap-4">
-        <div className={`w-13 h-13 w-12 h-12 rounded-xl ${company.logoColor} flex items-center justify-center text-white text-xl font-bold shadow-sm flex-shrink-0`}>
-          {company.logo}
+        <div className={`w-12 h-12 rounded-xl ${company.logoColor} flex items-center justify-center text-white text-xl font-bold shadow-sm flex-shrink-0 overflow-hidden relative`}>
+          <span className="relative z-0">{company.logo}</span>
+          <img 
+            src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${company.name.replace(/\s+/g, '').toLowerCase()}.com&size=128`}
+            alt={`${company.name} logo`} 
+            className="absolute inset-0 w-full h-full object-cover bg-white p-1 z-10"
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-gray-900 group-hover:text-brand-blue transition-colors truncate text-sm">
