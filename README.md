@@ -1,6 +1,5 @@
 # Career Hub — Recruitment Platform
-
-🚀 **Live Demo:** [https://careerhub-self.vercel.app](https://careerhub-self.vercel.app)
+ **Live Demo:** [https://careerhub-self.vercel.app](https://careerhub-self.vercel.app)
 
 Career Hub is a comprehensive, modern recruitment platform built with React and Tailwind CSS. It is designed to bridge the gap between job seekers and employers with a premium, user-friendly interface inspired by top-tier job boards like Naukri.com.
 
