@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Briefcase, Building2, LayoutGrid, Menu, X, Globe } from 'lucide-react';
+import { Briefcase, Building2, LayoutGrid, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { to: '/',            label: 'Jobs',        icon: Briefcase },
