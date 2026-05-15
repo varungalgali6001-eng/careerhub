@@ -1,5 +1,18 @@
 import { MapPin, Star, Users, Briefcase } from 'lucide-react';
 
+const getCompanyDomain = (name) => {
+  const customDomains = {
+    'TCS': 'tata.com',
+    'Reliance': 'ril.com',
+    'Zoom': 'zoom.us',
+    'Notion': 'notion.so',
+    'CRED': 'cred.club',
+    'Ola': 'olacabs.com'
+  };
+  if (customDomains[name]) return customDomains[name];
+  return `${name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`;
+};
+
 export default function CompanyCard({ company, onClick }) {
   return (
     <div
@@ -10,7 +23,7 @@ export default function CompanyCard({ company, onClick }) {
         <div className={`w-12 h-12 rounded-xl ${company.logoColor} flex items-center justify-center text-white text-xl font-bold shadow-sm flex-shrink-0 overflow-hidden relative`}>
           <span className="relative z-0">{company.logo}</span>
           <img 
-            src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${company.name.replace(/\s+/g, '').toLowerCase()}.com&size=128`}
+            src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${getCompanyDomain(company.name)}&size=128`}
             alt={`${company.name} logo`} 
             className="absolute inset-0 w-full h-full object-cover bg-white p-1 z-10"
             onError={(e) => { e.target.style.display = 'none'; }}

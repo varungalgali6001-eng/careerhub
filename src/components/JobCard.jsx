@@ -1,5 +1,18 @@
 import { MapPin, Clock, DollarSign, Bookmark, BookmarkCheck, ExternalLink } from 'lucide-react';
 
+const getCompanyDomain = (name) => {
+  const customDomains = {
+    'TCS': 'tata.com',
+    'Reliance': 'ril.com',
+    'Zoom': 'zoom.us',
+    'Notion': 'notion.so',
+    'CRED': 'cred.club',
+    'Ola': 'olacabs.com'
+  };
+  if (customDomains[name]) return customDomains[name];
+  return `${name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`;
+};
+
 export default function JobCard({ job, onToggleSave, onApply }) {
   return (
     <div className="group bg-white border border-gray-200 rounded-xl p-5 hover:shadow-cardHover hover:border-blue-200 transition-all duration-200 flex flex-col gap-3 shadow-card animate-slide-up">
@@ -9,7 +22,7 @@ export default function JobCard({ job, onToggleSave, onApply }) {
           <div className={`w-11 h-11 rounded-lg ${job.logoColor} flex items-center justify-center text-white text-lg font-bold shadow-sm overflow-hidden relative`}>
             <span className="relative z-0">{job.logo}</span>
             <img 
-              src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${job.company.replace(/\s+/g, '').toLowerCase()}.com&size=128`}
+              src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${getCompanyDomain(job.company)}&size=128`}
               alt={`${job.company} logo`} 
               className="absolute inset-0 w-full h-full object-cover bg-white p-1 z-10"
               onError={(e) => { e.target.style.display = 'none'; }}
